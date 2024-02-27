@@ -1,30 +1,74 @@
 {
-  "expo": {
-    "name": "MyExampleApp",
-    "slug": "MyExampleApp",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
-  }
+	"expo": {
+		"name": "MyExampleApp",
+		"slug": "MyExampleApp",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"infoPlist": {
+				"NSCameraUsageDescription": "This app uses the camera to operations",
+				"NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
+				"NSPhotoLibraryAddUsageDescription": "Allow $(PRODUCT_NAME) to save photos.",
+				"NSAppTransportSecurity": { "NSAllowsArbitraryLoads": true }
+			}
+		},
+		"android": {
+			"usesCleartextTraffic": true,
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"permissions": [
+				"android.permission.READ_MEDIA_IMAGES",
+				"android.permission.READ_MEDIA_VIDEO",
+				"android.permission.READ_EXTERNAL_STORAGE",
+				"android.permission.WRITE_EXTERNAL_STORAGE"
+			]
+		},
+
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": [
+			["./plugins/withDisableForcedDarkModeAndroid.js", {}],
+			["./plugins/withAndroidManifestService.js", {}],
+			[
+				"expo-font",
+				{
+					"fonts": []
+				}
+			],
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"usesCleartextTraffic": true
+					},
+					"ios": {
+						"useFrameworks": "static",
+						"infoPlist": {
+							"NSAppTransportSecurity": { "NSAllowsArbitraryLoads": true },
+							"LSApplicationQueriesSchemes": [
+								"whatsapp",
+								"instagram",
+								"instagram-stories",
+								"facebook",
+								"facebook-stories"
+							]
+						},
+						"supportsTablet": true
+					}
+				}
+			]
+		]
+	}
 }
